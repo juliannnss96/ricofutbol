@@ -13,7 +13,7 @@
       "type": "banner-home",
       "name": "Banner home",
       "settings": {
-        "titulo": "Rico futbol",
+        "titulo": "Rico es futbol",
         "subtitulo": "",
         "texto_boton": "Ver tienda",
         "url_boton": "shopify://collections/all",
