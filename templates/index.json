@@ -13,7 +13,7 @@
       "type": "banner-home",
       "name": "Banner home",
       "settings": {
-        "titulo": "El stock más variado del país",
+        "titulo": "Casacas con historia",
         "subtitulo": "",
         "texto_boton": "Ver tienda",
         "url_boton": "shopify://collections/all",
@@ -33,6 +33,7 @@
     },
     "tipos_jugador_4ak4XL": {
       "type": "tipos-jugador",
+      "disabled": true,
       "settings": {}
     },
     "bloque_flash_9gMcMW": {
@@ -41,7 +42,7 @@
       "settings": {
         "titulo": "Destacados",
         "collection_selected": "destacadas",
-        "texto_cat1": "Ver Zapatillas",
+        "texto_cat1": "Ver Compresión",
         "collection_cat1": "calzado",
         "texto_cat2": "Ver Indumentaria",
         "collection_cat2": "indumentaria"
@@ -81,6 +82,7 @@
     },
     "signatures_home_JfjYKd": {
       "type": "signatures-home",
+      "disabled": true,
       "settings": {}
     },
     "destacados_home_rG4cNh": {
