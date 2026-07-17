@@ -163,11 +163,7 @@
                         {%- assign lazy_load = true -%}
                       {%- endif -%}
                       <li
-                        class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-                        {% if settings.animations_reveal_on_scroll %}
-                          data-cascade
-                          style="--animation-order: {{ forloop.index }};"
-                        {% endif %}
+                        class="grid__item"
                       >
                         {% render 'card-product',
                           card_product: product,
