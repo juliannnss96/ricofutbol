@@ -33,6 +33,14 @@
             "picker_type": "button"
           }
         },
+        "inventory": {
+          "type": "inventory",
+          "settings": {
+            "text_style": "body",
+            "inventory_threshold": 4,
+            "show_inventory_quantity": false
+          }
+        },
         "quantity_selector": {
           "type": "quantity_selector",
           "settings": {}
@@ -48,6 +56,16 @@
           "type": "description",
           "settings": {}
         },
+        "payment-methods": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Métodos de pago",
+            "icon": "none",
+            "content": "",
+            "page": "",
+            "show_payment_icons": true
+          }
+        },
         "share": {
           "type": "share",
           "settings": {
@@ -60,9 +78,11 @@
         "title",
         "price",
         "variant_picker",
+        "inventory",
         "quantity_selector",
         "buy_buttons",
         "description",
+        "payment-methods",
         "share"
       ],
       "settings": {
