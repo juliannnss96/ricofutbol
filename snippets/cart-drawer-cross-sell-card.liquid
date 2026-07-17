@@ -1,0 +1,68 @@
+{%- comment -%}
+  Renders one cross-sell card for the cart drawer's "Complementos" carousel:
+  image, title, price (with compare-at strikethrough), an inline size
+  selector, and a one-click add button that submits via AJAX without
+  closing the drawer (handled by assets/cart-drawer-extras.js, which reads
+  the [data-cross-sell-add] / [data-cross-sell-variant-select] attributes).
+
+  Accepts:
+  - product: {Object} Product Liquid object
+
+  Usage:
+  {% render 'cart-drawer-cross-sell-card', product: product %}
+{%- endcomment -%}
+{%- liquid
+  assign target = product.selected_or_first_available_variant
+-%}
+<div class="cart-drawer__cross-sell-card">
+  <a href="{{ product.url }}" class="cart-drawer__cross-sell-image-link" tabindex="-1" aria-hidden="true">
+    {%- if product.featured_image -%}
+      <img
+        src="{{ product.featured_image | image_url: width: 300 }}"
+        alt="{{ product.featured_image.alt | escape }}"
+        loading="lazy"
+        width="150"
+        height="{{ 150 | divided_by: product.featured_image.aspect_ratio | ceil }}"
+        class="cart-drawer__cross-sell-image"
+      >
+    {%- endif -%}
+  </a>
+  <div class="cart-drawer__cross-sell-info">
+    <a href="{{ product.url }}" class="cart-drawer__cross-sell-title">{{ product.title | escape }}</a>
+    <div class="cart-drawer__cross-sell-price">
+      {%- if product.compare_at_price > product.price -%}
+        <s class="cart-drawer__cross-sell-price-compare">{{ product.compare_at_price | money }}</s>
+      {%- endif -%}
+      <span class="cart-drawer__cross-sell-price-final">{{ product.price | money }}</span>
+    </div>
+
+    {%- unless product.has_only_default_variant -%}
+      <select
+        class="cart-drawer__cross-sell-select"
+        data-cross-sell-variant-select
+        aria-label="{{ product.options_with_values.first.name | escape }}"
+      >
+        {%- for variant in product.variants -%}
+          <option
+            value="{{ variant.id }}"
+            {% if variant == target %}selected{% endif %}
+            {% unless variant.available %}disabled{% endunless %}
+          >
+            {{- variant.title -}}
+          </option>
+        {%- endfor -%}
+      </select>
+    {%- else -%}
+      <input type="hidden" data-cross-sell-variant-select value="{{ target.id }}">
+    {%- endunless -%}
+
+    <button
+      type="button"
+      class="cart-drawer__cross-sell-add button"
+      data-cross-sell-add
+      {% unless product.available %}disabled{% endunless %}
+    >
+      {{ 'products.product.add_to_cart' | t }}
+    </button>
+  </div>
+</div>

@@ -1449,6 +1449,13 @@
         "default": false
       },
       {
+        "type": "number",
+        "id": "cart_free_shipping_threshold",
+        "label": "t:settings_schema.cart.settings.free_shipping.threshold.label",
+        "info": "t:settings_schema.cart.settings.free_shipping.threshold.info",
+        "default": 50000
+      },
+      {
         "type": "header",
         "content": "t:settings_schema.cart.settings.cart_drawer.header"
       },
@@ -1457,6 +1464,21 @@
         "id": "cart_drawer_collection",
         "label": "t:settings_schema.cart.settings.cart_drawer.collection.label",
         "info": "t:settings_schema.cart.settings.cart_drawer.collection.info"
+      },
+      {
+        "type": "collection",
+        "id": "cart_drawer_quick_link_1",
+        "label": "Colección sugerida 1 (carrito vacío)"
+      },
+      {
+        "type": "collection",
+        "id": "cart_drawer_quick_link_2",
+        "label": "Colección sugerida 2 (carrito vacío)"
+      },
+      {
+        "type": "collection",
+        "id": "cart_drawer_quick_link_3",
+        "label": "Colección sugerida 3 (carrito vacío)"
       },
       {
         "type": "color_scheme",

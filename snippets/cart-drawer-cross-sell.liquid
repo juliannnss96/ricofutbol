@@ -1,0 +1,48 @@
+{%- comment -%}
+  Renders the "Complementos" cross-sell carousel in the cart drawer,
+  sourced from a merchant-curated metafield (product.metafields.custom.cross_sell_products,
+  a list of products) rather than Shopify's automatic recommendations —
+  this lets the merchant hand-pick exactly which items show per product.
+
+  Since the cart-drawer section has no direct signal for "which item was
+  just added" (Section Rendering API re-renders don't carry extra context),
+  the most recently added line item (cart.items.last) is used as the source
+  product for the cross-sell list.
+
+  Usage:
+  {% render 'cart-drawer-cross-sell' %}
+{%- endcomment -%}
+{%- liquid
+  assign source_product = cart.items.last.product
+  assign cross_sell_products = source_product.metafields.custom.cross_sell_products.value
+-%}
+{%- if cross_sell_products.size > 0 -%}
+  <div class="cart-drawer__cross-sell">
+    <div class="cart-drawer__cross-sell-header">
+      <h3 class="cart-drawer__cross-sell-heading">{{ 'sections.cart.cross_sell.heading' | t }}</h3>
+      <div class="cart-drawer__cross-sell-nav">
+        <button
+          type="button"
+          class="cart-drawer__cross-sell-prev"
+          aria-label="{{ 'general.slider.previous_slide' | t }}"
+        >
+          {{- 'icon-caret.svg' | inline_asset_content -}}
+        </button>
+        <button
+          type="button"
+          class="cart-drawer__cross-sell-next"
+          aria-label="{{ 'general.slider.next_slide' | t }}"
+        >
+          {{- 'icon-caret.svg' | inline_asset_content -}}
+        </button>
+      </div>
+    </div>
+    <div class="cart-drawer__cross-sell-track">
+      {%- for cs_product in cross_sell_products -%}
+        {%- unless cs_product == blank or cs_product.id == source_product.id -%}
+          {%- render 'cart-drawer-cross-sell-card', product: cs_product -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}

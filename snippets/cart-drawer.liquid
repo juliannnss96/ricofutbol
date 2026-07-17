@@ -7,9 +7,11 @@
 
 {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-cart-drawer-v2.css' | asset_url | stylesheet_tag }}
 
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'cart-drawer-extras.js' | asset_url }}" defer="defer"></script>
 
 <style>
   .drawer {
@@ -29,9 +31,9 @@
     >
       {%- if cart == empty -%}
         <div class="drawer__inner-empty">
-          <div class="cart-drawer__warnings center{% if settings.cart_drawer_collection != blank %} cart-drawer__warnings--has-collection{% endif %}">
+          <div class="cart-drawer__warnings center{% if settings.cart_drawer_quick_link_1 != blank or settings.cart_drawer_quick_link_2 != blank or settings.cart_drawer_quick_link_3 != blank %} cart-drawer__warnings--has-collection{% endif %}">
             <div class="cart-drawer__empty-content">
-              <h2 class="cart__empty-text">{{ 'sections.cart.empty' | t }}</h2>
+              <h2 class="cart__empty-text visually-hidden">{{ 'sections.cart.empty' | t }}</h2>
               <button
                 class="drawer__close"
                 type="button"
@@ -42,27 +44,56 @@
                   {{- 'icon-close.svg' | inline_asset_content -}}
                 </span>
               </button>
-              <a href="{{ routes.all_products_collection_url }}" class="button">
-                {{ 'general.continue_shopping' | t }}
-              </a>
-
-              {%- if shop.customer_accounts_enabled and customer == null -%}
-                <p class="cart__login-title h3">{{ 'sections.cart.login.title' | t }}</p>
-                <p class="cart__login-paragraph">
-                  {{ 'sections.cart.login.paragraph_html' | t: link: routes.account_login_url }}
-                </p>
-              {%- endif -%}
             </div>
           </div>
-          {%- if settings.cart_drawer_collection != blank -%}
-            <div class="cart-drawer__collection">
-              {% render 'card-collection', card_collection: settings.cart_drawer_collection, columns: 1 %}
+          {%- if settings.cart_drawer_quick_link_1 != blank
+            or settings.cart_drawer_quick_link_2 != blank
+            or settings.cart_drawer_quick_link_3 != blank
+          -%}
+            <div class="cart-drawer__quick-links">
+              <p class="cart-drawer__quick-links-heading">
+                {{ 'sections.cart.empty_quick_links_heading' | t }}
+              </p>
+              <ul class="cart-drawer__quick-links-list list-unstyled" role="list">
+                {%- if settings.cart_drawer_quick_link_1 != blank -%}
+                  <li>
+                    <a href="{{ settings.cart_drawer_quick_link_1.url }}" class="cart-drawer__quick-link">
+                      <span>{{ settings.cart_drawer_quick_link_1.title }}</span>
+                      {{- 'icon-arrow.svg' | inline_asset_content -}}
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.cart_drawer_quick_link_2 != blank -%}
+                  <li>
+                    <a href="{{ settings.cart_drawer_quick_link_2.url }}" class="cart-drawer__quick-link">
+                      <span>{{ settings.cart_drawer_quick_link_2.title }}</span>
+                      {{- 'icon-arrow.svg' | inline_asset_content -}}
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.cart_drawer_quick_link_3 != blank -%}
+                  <li>
+                    <a href="{{ settings.cart_drawer_quick_link_3.url }}" class="cart-drawer__quick-link">
+                      <span>{{ settings.cart_drawer_quick_link_3.title }}</span>
+                      {{- 'icon-arrow.svg' | inline_asset_content -}}
+                    </a>
+                  </li>
+                {%- endif -%}
+              </ul>
             </div>
           {%- endif -%}
         </div>
       {%- endif -%}
       <div class="drawer__header">
-        <h2 class="drawer__heading">{{ 'sections.cart.title' | t }}</h2>
+        <div class="drawer__header-default">
+          <h2 class="drawer__heading">{{ 'sections.cart.title' | t }}</h2>
+        </div>
+        <div class="drawer__header-added">
+          <h2 class="drawer__heading">{{ 'sections.cart.added_title' | t }}</h2>
+          <a href="{{ routes.cart_url }}" class="drawer__view-cart-link">
+            {{- 'sections.cart.view_cart' | t -}}
+          </a>
+        </div>
         <button
           class="drawer__close"
           type="button"
@@ -454,7 +485,13 @@
           <div id="CartDrawer-CartErrors" role="alert"></div>
         </form>
       </cart-drawer-items>
+      {%- if cart != empty -%}
+        {%- render 'cart-drawer-cross-sell' -%}
+      {%- endif -%}
       <div class="drawer__footer">
+        {%- if cart != empty -%}
+          {%- render 'cart-drawer-shipping-bar' -%}
+        {%- endif -%}
         {%- if settings.show_cart_note -%}
           <details id="Details-CartDrawer">
             <summary>
@@ -478,7 +515,7 @@
         <!-- Start blocks -->
         <!-- Subtotals -->
 
-        <div class="cart-drawer__footer" {{ block.shopify_attributes }}>
+        <div class="cart-drawer__footer">
           <div>
             {%- if cart.cart_level_discount_applications.size > 0 -%}
               <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
@@ -541,7 +578,14 @@
 
         <!-- CTAs -->
 
-        <div class="cart__ctas" {{ block.shopify_attributes }}>
+        <div class="cart__ctas">
+          <button
+            type="button"
+            class="cart-drawer__continue-shopping-button button button--secondary"
+            onclick="this.closest('cart-drawer').close()"
+          >
+            {{ 'sections.cart.continue_shopping_button' | t }}
+          </button>
           <button
             type="submit"
             id="CartDrawer-Checkout"
@@ -552,7 +596,7 @@
               disabled
             {% endif %}
           >
-            {{ 'sections.cart.checkout' | t }}
+            {{ 'sections.cart.checkout_button' | t }}
           </button>
         </div>
       </div>

@@ -26,7 +26,12 @@ class CartDrawer extends HTMLElement {
   }
 
   open(triggeredBy) {
-    if (triggeredBy) this.setActiveElement(triggeredBy);
+    if (triggeredBy) {
+      this.setActiveElement(triggeredBy);
+      // Opened via the header cart icon, not via a just-completed add-to-cart:
+      // show the standard "Carrito" header instead of the "just added" one.
+      this.classList.remove('cart-drawer--just-added');
+    }
     const cartDrawerNote = this.querySelector('[id^="Details-"] summary');
     if (cartDrawerNote && !cartDrawerNote.hasAttribute('role')) this.setSummaryAccessibility(cartDrawerNote);
     // here the animation doesn't seem to always get triggered. A timeout seem to help
@@ -82,6 +87,8 @@ class CartDrawer extends HTMLElement {
       if (!sectionElement) return;
       sectionElement.innerHTML = this.getSectionInnerHTML(parsedState.sections[section.id], section.selector);
     });
+
+    this.classList.add('cart-drawer--just-added');
 
     setTimeout(() => {
       this.querySelector('#CartDrawer-Overlay').addEventListener('click', this.close.bind(this));

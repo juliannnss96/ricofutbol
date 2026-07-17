@@ -1,0 +1,48 @@
+{%- comment -%}
+  Renders the free-shipping progress bar for the cart drawer.
+
+  The merchant-configured threshold (settings.cart_free_shipping_threshold)
+  is entered in whole currency units; cart.total_price is always in the
+  shop's smallest currency unit, so it's multiplied by 100 before comparing.
+  Everything here is computed fresh on every server-rendered cart-drawer
+  re-render (add/remove/quantity change), so no client-side money math is
+  needed to keep it in sync.
+
+  Usage:
+  {% render 'cart-drawer-shipping-bar' %}
+{%- endcomment -%}
+{%- liquid
+  assign threshold = settings.cart_free_shipping_threshold | times: 100
+-%}
+{%- if threshold > 0 -%}
+  {%- liquid
+    assign remaining = threshold | minus: cart.total_price
+    assign reached = false
+    if remaining <= 0
+      assign reached = true
+      assign remaining = 0
+    endif
+
+    assign percent = 100
+    unless reached
+      assign percent = cart.total_price | times: 100.0 | divided_by: threshold | round
+      if percent > 100
+        assign percent = 100
+      endif
+    endunless
+
+    assign remaining_money = remaining | money
+  -%}
+  <div class="cart-drawer__shipping-bar" data-reached="{{ reached }}">
+    <p class="cart-drawer__shipping-message">
+      {%- if reached -%}
+        {{ 'sections.cart.free_shipping.reached' | t }}
+      {%- else -%}
+        {{ 'sections.cart.free_shipping.remaining_html' | t: amount: remaining_money }}
+      {%- endif -%}
+    </p>
+    <div class="cart-drawer__progress-track">
+      <div class="cart-drawer__progress-fill" style="width: {{ percent }}%"></div>
+    </div>
+  </div>
+{%- endif -%}

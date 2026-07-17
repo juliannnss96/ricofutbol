@@ -327,6 +327,14 @@
       "note": "Order special instructions",
       "checkout": "Check out",
       "empty": "Your cart is empty",
+      "empty_quick_links_heading": "Not sure where to start? Try these collections:",
+      "free_shipping": {
+        "remaining_html": "You're <strong>{{ amount }}</strong> away from free shipping 🚀",
+        "reached": "🎉 You made it! You have free shipping"
+      },
+      "cross_sell": {
+        "heading": "You might also like"
+      },
       "cart_error": "There was an error while updating your cart. Please try again.",
       "cart_quantity_error_html": "You can only add {{ quantity }} of this item to your cart.",
       "duties_and_taxes_included_shipping_at_checkout_with_policy_html": "Duties and taxes included. Discounts and <a href=\"{{ link }}\">shipping</a> calculated at checkout.",
