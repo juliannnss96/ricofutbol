@@ -1,0 +1,61 @@
+{%- comment -%}
+  Returns a translated weekday abbreviation or month name for a Unix epoch.
+  Shopify's `date` filter always renders English names regardless of the
+  storefront language, so this maps the English name to a locale key.
+
+  Accepts:
+  - epoch: {Number} Unix timestamp
+  - part: {String} 'day' or 'month'
+
+  Usage:
+  {% render 'localized-date-part', epoch: min_epoch, part: 'day' %}
+{%- endcomment -%}
+{%- liquid
+  if part == 'day'
+    assign name_en = epoch | date: '%A'
+    case name_en
+      when 'Sunday'
+        assign result = 'products.product.date.days.sunday' | t
+      when 'Monday'
+        assign result = 'products.product.date.days.monday' | t
+      when 'Tuesday'
+        assign result = 'products.product.date.days.tuesday' | t
+      when 'Wednesday'
+        assign result = 'products.product.date.days.wednesday' | t
+      when 'Thursday'
+        assign result = 'products.product.date.days.thursday' | t
+      when 'Friday'
+        assign result = 'products.product.date.days.friday' | t
+      when 'Saturday'
+        assign result = 'products.product.date.days.saturday' | t
+    endcase
+  else
+    assign name_en = epoch | date: '%B'
+    case name_en
+      when 'January'
+        assign result = 'products.product.date.months.january' | t
+      when 'February'
+        assign result = 'products.product.date.months.february' | t
+      when 'March'
+        assign result = 'products.product.date.months.march' | t
+      when 'April'
+        assign result = 'products.product.date.months.april' | t
+      when 'May'
+        assign result = 'products.product.date.months.may' | t
+      when 'June'
+        assign result = 'products.product.date.months.june' | t
+      when 'July'
+        assign result = 'products.product.date.months.july' | t
+      when 'August'
+        assign result = 'products.product.date.months.august' | t
+      when 'September'
+        assign result = 'products.product.date.months.september' | t
+      when 'October'
+        assign result = 'products.product.date.months.october' | t
+      when 'November'
+        assign result = 'products.product.date.months.november' | t
+      when 'December'
+        assign result = 'products.product.date.months.december' | t
+    endcase
+  endif
+-%}{{- result -}}

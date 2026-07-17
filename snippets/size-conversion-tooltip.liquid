@@ -1,0 +1,108 @@
+{%- comment -%}
+  Renders a hover tooltip showing the Argentine size and insole length (cm)
+  for a given US shoe size, sourced from the size guide table in the footer
+  ("Guía de talles" modal).
+
+  Accepts:
+  - us_size: {String} the US size value shown on the button (e.g. "8.5")
+
+  Usage:
+  {% render 'size-conversion-tooltip', us_size: value %}
+{%- endcomment -%}
+{%- liquid
+  assign ar = blank
+  assign cm = blank
+  case us_size
+    when '3'
+      assign ar = '34'
+      assign cm = '21.5'
+    when '3.5'
+      assign ar = '35'
+      assign cm = '22'
+    when '4'
+      assign ar = '35.5'
+      assign cm = '22.5'
+    when '4.5'
+      assign ar = '36'
+      assign cm = '23'
+    when '5'
+      assign ar = '37'
+      assign cm = '23.5'
+    when '5.5'
+      assign ar = '37.5'
+      assign cm = '24'
+    when '6'
+      assign ar = '38'
+      assign cm = '24'
+    when '6.5'
+      assign ar = '38.5'
+      assign cm = '24.5'
+    when '7'
+      assign ar = '39'
+      assign cm = '25'
+    when '7.5'
+      assign ar = '39.5'
+      assign cm = '25.5'
+    when '8'
+      assign ar = '40'
+      assign cm = '26'
+    when '8.5'
+      assign ar = '41'
+      assign cm = '26.5'
+    when '9'
+      assign ar = '41.5'
+      assign cm = '27'
+    when '9.5'
+      assign ar = '42'
+      assign cm = '27.5'
+    when '10'
+      assign ar = '43'
+      assign cm = '28'
+    when '10.5'
+      assign ar = '43.5'
+      assign cm = '28.5'
+    when '11'
+      assign ar = '44'
+      assign cm = '29'
+    when '11.5'
+      assign ar = '44.5'
+      assign cm = '29.5'
+    when '12'
+      assign ar = '45'
+      assign cm = '30'
+    when '12.5'
+      assign ar = '45.5'
+      assign cm = '30.5'
+    when '13'
+      assign ar = '46'
+      assign cm = '31'
+    when '13.5'
+      assign ar = '46.5'
+      assign cm = '31.5'
+    when '14'
+      assign ar = '47'
+      assign cm = '32'
+    when '14.5'
+      assign ar = '47.5'
+      assign cm = '32.5'
+    when '15'
+      assign ar = '48'
+      assign cm = '33'
+    when '15.5'
+      assign ar = '48.5'
+      assign cm = '33.5'
+  endcase
+-%}
+{%- if ar != blank -%}
+  <span class="size-tooltip">
+    <span class="size-tooltip__row">
+      <span class="size-tooltip__label">AR</span>
+      <span class="size-tooltip__value size-tooltip__value--ar">{{ ar }}</span>
+    </span>
+    <span class="size-tooltip__divider"></span>
+    <span class="size-tooltip__row size-tooltip__row--cm">
+      <span class="size-tooltip__label">CM</span>
+      <span class="size-tooltip__value">{{ cm }}</span>
+    </span>
+  </span>
+{%- endif -%}

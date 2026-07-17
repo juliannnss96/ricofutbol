@@ -1,0 +1,19 @@
+{%- comment -%}
+  Renders "up to 3 interest-free installments" for a product's current price.
+
+  Accepts:
+  - product: {Object} Product Liquid object
+
+  Usage:
+  {% render 'installments', product: product %}
+{%- endcomment -%}
+{%- liquid
+  assign target = product.selected_or_first_available_variant | default: product
+  assign price = target.price | default: product.price
+  assign installment_count = 3
+  assign installment_price = price | divided_by: installment_count | round
+  assign installment_money = installment_price | money
+-%}
+<p class="product__installments">
+  {{ 'products.product.installments_html' | t: count: installment_count, price: installment_money }}
+</p>

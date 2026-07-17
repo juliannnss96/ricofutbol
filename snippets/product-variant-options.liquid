@@ -94,6 +94,7 @@
     <label for="{{ input_id }}">
       {{ value -}}
       {{ label_unavailable }}
+      {% render 'size-conversion-tooltip', us_size: value %}
     </label>
   {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
     <option

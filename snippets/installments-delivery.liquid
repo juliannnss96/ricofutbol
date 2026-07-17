@@ -1,0 +1,42 @@
+{%- comment -%}
+  Renders "up to 3 interest-free installments" and an estimated delivery
+  date range of 12 to 20 days from today.
+
+  Accepts:
+  - product: {Object} Product Liquid object
+
+  Usage:
+  {% render 'installments-delivery', product: product %}
+{%- endcomment -%}
+
+{%- liquid
+  assign today_epoch = 'now' | date: '%s'
+  assign min_epoch = today_epoch | plus: 1036800
+  assign max_epoch = today_epoch | plus: 1728000
+
+  assign min_date = min_epoch | date: '%-d'
+  assign max_date = max_epoch | date: '%-d'
+  assign min_month = min_epoch | date: '%B'
+  assign max_month = max_epoch | date: '%B'
+-%}
+{%- capture min_day -%}{% render 'localized-date-part', epoch: min_epoch, part: 'day' %}{%- endcapture -%}
+{%- capture max_day -%}{% render 'localized-date-part', epoch: max_epoch, part: 'day' %}{%- endcapture -%}
+{%- capture min_month_name -%}{% render 'localized-date-part', epoch: min_epoch, part: 'month' %}{%- endcapture -%}
+{%- capture max_month_name -%}{% render 'localized-date-part', epoch: max_epoch, part: 'month' %}{%- endcapture -%}
+
+<div class="product__installments-delivery">
+  {% render 'installments', product: product %}
+  <p class="product__delivery-estimate">
+    {%- if min_month == max_month -%}
+      {{
+        'products.product.delivery_estimate_same_month_html'
+        | t: min_day: min_day, min_date: min_date, max_day: max_day, max_date: max_date, month: max_month_name
+      }}
+    {%- else -%}
+      {{
+        'products.product.delivery_estimate_html'
+        | t: min_day: min_day, min_date: min_date, min_month: min_month_name, max_day: max_day, max_date: max_date, max_month: max_month_name
+      }}
+    {%- endif -%}
+  </p>
+</div>
