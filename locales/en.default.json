@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "general": {
     "password_page": {
@@ -107,6 +116,34 @@
   "products": {
     "product": {
       "add_to_cart": "Add to cart",
+      "installments_html": "{{ count }} cuotas sin interés de {{ price }}",
+      "delivery_estimate_same_month_html": "Llega el <strong>{{ min_day }} {{ min_date }}</strong> o <strong>{{ max_day }} {{ max_date }}</strong> de {{ month }}",
+      "delivery_estimate_html": "Llega el <strong>{{ min_day }} {{ min_date }} de {{ min_month }}</strong> o <strong>{{ max_day }} {{ max_date }} de {{ max_month }}</strong>",
+      "date": {
+        "days": {
+          "sunday": "dom",
+          "monday": "lun",
+          "tuesday": "mar",
+          "wednesday": "mié",
+          "thursday": "jue",
+          "friday": "vie",
+          "saturday": "sáb"
+        },
+        "months": {
+          "january": "enero",
+          "february": "febrero",
+          "march": "marzo",
+          "april": "abril",
+          "may": "mayo",
+          "june": "junio",
+          "july": "julio",
+          "august": "agosto",
+          "september": "septiembre",
+          "october": "octubre",
+          "november": "noviembre",
+          "december": "diciembre"
+        }
+      },
       "choose_options": "Choose options",
       "choose_product_options": "Choose options for {{ product_name }}",
       "description": "Description",
