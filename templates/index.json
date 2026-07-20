@@ -17,9 +17,9 @@
         "subtitulo": "",
         "texto_boton": "Ver tienda",
         "url_boton": "shopify://collections/all",
-        "imagen_desktop": "https://cdn.shopify.com/s/files/1/0980/1764/0757/files/Hero_Desktop.webp?v=1773864069",
-        "imagen_mobile": "https://cdn.shopify.com/s/files/1/0980/1764/0757/files/Hero_Desktop.webp?v=1773864069",
-        "video_desktop": "",
+        "imagen_desktop": "",
+        "imagen_mobile": "https://cdn.shopify.com/videos/c/o/v/51bb3cc15a8444d18c4127aeccc8b33d.mp4",
+        "video_desktop": "https://cdn.shopify.com/videos/c/o/v/bdd186edeba8417ea82a5b6914f66e70.mp4",
         "video_mobile": ""
       }
     },
