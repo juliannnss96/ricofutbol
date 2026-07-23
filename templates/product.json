@@ -27,6 +27,18 @@
           "type": "price",
           "settings": {}
         },
+        "disclaimer_product": {
+          "type": "disclaimer_product",
+          "settings": {
+            "titulo": "3 cuotas sin interés sin monto mínimo!",
+            "subtitulo": "",
+            "svg": "",
+            "titulo_2": "15% OFF vía transferencia",
+            "subtitulo_2": "",
+            "titulo_3": "60 días de garantía",
+            "subtitulo_3": ""
+          }
+        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -73,6 +85,7 @@
         "vendor",
         "title",
         "price",
+        "disclaimer_product",
         "variant_picker",
         "inventory",
         "buy_buttons",
