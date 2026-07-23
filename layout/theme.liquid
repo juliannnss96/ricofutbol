@@ -37,6 +37,7 @@
     <script src="{{ 'sort-select-custom.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'stock-aware-size-filter.js' | asset_url }}" defer="defer"></script>
+    {{ 'discount-percent-weight-override.css' | asset_url | stylesheet_tag }}
 
     {%- if settings.animations_reveal_on_scroll -%}
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>

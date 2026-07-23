@@ -1,0 +1,8 @@
+/* Match the "% OFF" discount text's font-weight to the strikethrough
+   original price (font-weight: 400), instead of the heavier 500 it had by
+   default in custom.css. Covers both the product page and product cards
+   (collection/search grids). */
+.product .text-descuento,
+.product-card-wrapper .card__content .text-descuento {
+  font-weight: 400;
+}
