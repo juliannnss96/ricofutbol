@@ -410,14 +410,32 @@
                     aria-describedby="a11y-refresh-page-message"
                   >
                     {%- for option in results.sort_options -%}
-                      <option
-                        value="{{ option.value | escape }}"
-                        {% if option.value == sort_by %}
-                          selected="selected"
-                        {% endif %}
-                      >
-                        {{ option.name | escape }}
-                      </option>
+                      {%- assign show_option = false -%}
+                      {%- assign option_label = option.name -%}
+                      {%- case option.value -%}
+                        {%- when 'manual' -%}
+                          {%- assign show_option = true -%}
+                          {%- assign option_label = 'Destacados' -%}
+                        {%- when 'created-descending' -%}
+                          {%- assign show_option = true -%}
+                          {%- assign option_label = 'Recientes' -%}
+                        {%- when 'price-descending' -%}
+                          {%- assign show_option = true -%}
+                          {%- assign option_label = 'Mayor precio' -%}
+                        {%- when 'price-ascending' -%}
+                          {%- assign show_option = true -%}
+                          {%- assign option_label = 'Menor precio' -%}
+                      {%- endcase -%}
+                      {%- if show_option -%}
+                        <option
+                          value="{{ option.value | escape }}"
+                          {% if option.value == sort_by %}
+                            selected="selected"
+                          {% endif %}
+                        >
+                          {{ option_label }}
+                        </option>
+                      {%- endif -%}
                     {%- endfor -%}
                   </select>
                   <span class="svg-wrapper">
@@ -743,14 +761,32 @@
                           aria-describedby="a11y-refresh-page-message"
                         >
                           {%- for option in results.sort_options -%}
-                            <option
-                              value="{{ option.value | escape }}"
-                              {% if option.value == sort_by %}
-                                selected="selected"
-                              {% endif %}
-                            >
-                              {{ option.name | escape }}
-                            </option>
+                            {%- assign show_option = false -%}
+                            {%- assign option_label = option.name -%}
+                            {%- case option.value -%}
+                              {%- when 'manual' -%}
+                                {%- assign show_option = true -%}
+                                {%- assign option_label = 'Destacados' -%}
+                              {%- when 'created-descending' -%}
+                                {%- assign show_option = true -%}
+                                {%- assign option_label = 'Recientes' -%}
+                              {%- when 'price-descending' -%}
+                                {%- assign show_option = true -%}
+                                {%- assign option_label = 'Mayor precio' -%}
+                              {%- when 'price-ascending' -%}
+                                {%- assign show_option = true -%}
+                                {%- assign option_label = 'Menor precio' -%}
+                            {%- endcase -%}
+                            {%- if show_option -%}
+                              <option
+                                value="{{ option.value | escape }}"
+                                {% if option.value == sort_by %}
+                                  selected="selected"
+                                {% endif %}
+                              >
+                                {{ option_label }}
+                              </option>
+                            {%- endif -%}
                           {%- endfor -%}
                         </select>
                         <span class="svg-wrapper">
@@ -850,14 +886,32 @@
                 aria-describedby="a11y-refresh-page-message"
               >
                 {%- for option in results.sort_options -%}
-                  <option
-                    value="{{ option.value | escape }}"
-                    {% if option.value == sort_by %}
-                      selected="selected"
-                    {% endif %}
-                  >
-                    {{ option.name | escape }}
-                  </option>
+                  {%- assign show_option = false -%}
+                  {%- assign option_label = option.name -%}
+                  {%- case option.value -%}
+                    {%- when 'manual' -%}
+                      {%- assign show_option = true -%}
+                      {%- assign option_label = 'Destacados' -%}
+                    {%- when 'created-descending' -%}
+                      {%- assign show_option = true -%}
+                      {%- assign option_label = 'Recientes' -%}
+                    {%- when 'price-descending' -%}
+                      {%- assign show_option = true -%}
+                      {%- assign option_label = 'Mayor precio' -%}
+                    {%- when 'price-ascending' -%}
+                      {%- assign show_option = true -%}
+                      {%- assign option_label = 'Menor precio' -%}
+                  {%- endcase -%}
+                  {%- if show_option -%}
+                    <option
+                      value="{{ option.value | escape }}"
+                      {% if option.value == sort_by %}
+                        selected="selected"
+                      {% endif %}
+                    >
+                      {{ option_label }}
+                    </option>
+                  {%- endif -%}
                 {%- endfor -%}
               </select>
               <span class="svg-wrapper">

@@ -39,8 +39,33 @@
     if ratio == 0 or ratio == null
       assign ratio = 1
     endif
+
+    assign size_option_position = 0
+    for option in card_product.options_with_values
+      assign opt_name_down = option.name | downcase
+      if opt_name_down contains 'talla' or opt_name_down contains 'talle'
+        assign size_option_position = option.position
+      endif
+    endfor
+
+    assign available_sizes = ''
+    if size_option_position > 0
+      for variant in card_product.variants
+        if variant.available
+          case size_option_position
+            when 1
+              assign size_value = variant.option1
+            when 2
+              assign size_value = variant.option2
+            when 3
+              assign size_value = variant.option3
+          endcase
+          assign available_sizes = available_sizes | append: size_value | append: '||'
+        endif
+      endfor
+    endif
   -%}
-  <div class="card-wrapper product-card-wrapper underline-links-hover">
+  <div class="card-wrapper product-card-wrapper underline-links-hover"{% if size_option_position > 0 %} data-available-sizes="{{ available_sizes }}"{% endif %}>
     <div
       class="
         card card--{{ settings.card_style }}
