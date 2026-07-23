@@ -1,0 +1,593 @@
+/* Cart drawer: dark theme, added-item cards, shipping bar, cross-sell */
+
+/* Override the underlying color-scheme CSS variables that Dawn's components
+   (quantity popover, cart items, borders, etc.) read from directly, so every
+   nested component inherits dark-appropriate colors automatically instead of
+   needing every individual Dawn class patched one at a time.
+   Must target .drawer__inner directly (not just #CartDrawer as an ancestor) —
+   .color-scheme-1 sets these same variables directly on .drawer__inner itself,
+   and a rule matching an element directly always wins over an inherited value
+   from a parent, regardless of the parent rule's specificity. */
+#CartDrawer .drawer__inner {
+  --color-background: 28, 28, 28;
+  --color-foreground: 255, 255, 255;
+  --color-secondary-button: 28, 28, 28;
+  --color-secondary-button-text: 255, 255, 255;
+  --color-button: 255, 255, 255;
+  --color-button-text: 28, 28, 28;
+}
+
+#CartDrawer .drawer__inner {
+  background-color: #1C1C1C;
+  color: #FFFFFF;
+}
+
+#CartDrawer .drawer.active .drawer__inner,
+.drawer .drawer__inner {
+  transition: transform 300ms ease-out;
+}
+
+/* Let content determine height instead of the items list force-growing to
+   fill the full drawer height — that was pushing the shipping bar/cross-sell/
+   buttons all the way to the bottom on short carts, leaving a large empty gap. */
+#CartDrawer cart-drawer-items {
+  flex: 0 1 auto;
+}
+
+#CartDrawer .drawer__inner {
+  overflow-y: auto;
+}
+
+/* Not shown in the reference design — hide subtotal/tax note in favor of the
+   shipping bar + CTAs flowing directly after the cart items/cross-sell. */
+#CartDrawer .cart-drawer__footer .totals,
+#CartDrawer .cart-drawer__footer .tax-note {
+  display: none;
+}
+
+/* Empty-cart state: Dawn centers this block vertically in the full drawer
+   height by default (grid + align-items:center) and also lets .cart-drawer__warnings
+   grow to fill space with its own content centered — together that's what was
+   pushing the quick-links list far down with a large gap. Anchor everything
+   to the top instead. */
+cart-drawer.is-empty #CartDrawer .drawer__inner {
+  align-items: start;
+}
+
+#CartDrawer .cart-drawer__warnings {
+  flex: 0 0 auto;
+  justify-content: flex-start;
+}
+
+#CartDrawer .cart-drawer__empty-content {
+  padding-top: 1.5rem;
+}
+
+#CartDrawer .drawer__heading,
+#CartDrawer .drawer__view-cart-link {
+  font-family: "PP Neue Montreal";
+  color: #FFFFFF;
+}
+
+#CartDrawer .drawer__close .icon,
+#CartDrawer .drawer__close svg {
+  color: #FFFFFF;
+  fill: #FFFFFF;
+}
+
+#CartDrawer .drawer__header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  align-items: center;
+}
+
+#CartDrawer .drawer__header-added {
+  display: none;
+  align-items: baseline;
+  gap: 1.2rem;
+}
+
+#CartDrawer .drawer__header-added .drawer__heading {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+#CartDrawer .drawer__view-cart-link {
+  font-size: 1.4rem;
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+  white-space: nowrap;
+}
+
+cart-drawer.cart-drawer--just-added #CartDrawer .drawer__header-default {
+  display: none;
+}
+
+cart-drawer.cart-drawer--just-added #CartDrawer .drawer__header-added {
+  display: flex;
+}
+
+/* Added-item cards: reuse Dawn's existing mobile card-grid layout for the
+   cart-items table (normally scoped to max-width:749px) unconditionally,
+   since the drawer is narrow at every viewport. */
+#CartDrawer .cart-items,
+#CartDrawer .cart-items tbody {
+  display: block;
+  width: 100%;
+}
+
+#CartDrawer .cart-items thead {
+  display: none;
+}
+
+#CartDrawer .cart-item {
+  display: grid;
+  grid-template: repeat(2, auto) / repeat(4, 1fr);
+  gap: 1.2rem;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  animation: cart-drawer-item-in 300ms ease-out;
+}
+
+#CartDrawer .cart-item:first-child {
+  padding-top: 0;
+}
+
+#CartDrawer .cart-item__media {
+  grid-row: 1 / 3;
+}
+
+#CartDrawer .cart-item__image {
+  border-radius: 1.2rem;
+}
+
+#CartDrawer .cart-item__details {
+  grid-column: 2 / 5;
+}
+
+#CartDrawer .cart-item__quantity {
+  grid-column: 2 / 5;
+  align-self: end;
+}
+
+#CartDrawer .cart-item__totals {
+  display: none;
+}
+
+#CartDrawer .cart-item__name,
+#CartDrawer .cart-item__details .product-option,
+#CartDrawer .cart-item__final-price,
+#CartDrawer .price {
+  color: #FFFFFF;
+  font-family: "PP Neue Montreal";
+}
+
+#CartDrawer .cart-item__old-price {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Quantity + remove: one merged pill, trash first, minus hidden
+   (matches reference: [trash] | [qty] | [+]) */
+
+#CartDrawer .cart-item__quantity-wrapper {
+  display: flex;
+  align-items: stretch;
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+#CartDrawer .quantity-popover-container {
+  display: flex;
+}
+
+#CartDrawer quantity-input.quantity {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  width: auto;
+  min-height: 3.6rem;
+}
+
+#CartDrawer quantity-input.quantity::after {
+  content: none;
+}
+
+#CartDrawer .quantity__button[name="minus"] {
+  display: none;
+}
+
+#CartDrawer .quantity__button,
+#CartDrawer .quantity__input {
+  color: #FFFFFF;
+  min-width: 3.6rem;
+  min-height: 3.6rem;
+}
+
+#CartDrawer .quantity__input {
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#CartDrawer .quantity__button .icon,
+#CartDrawer .quantity__button svg {
+  fill: #FFFFFF;
+}
+
+#CartDrawer cart-remove-button {
+  order: -1;
+  display: flex;
+}
+
+#CartDrawer button.cart-remove-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.6rem;
+  height: 3.6rem;
+  min-width: 3.6rem;
+  min-height: 3.6rem;
+  border-radius: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  transition: background-color 200ms ease, transform 150ms ease;
+}
+
+#CartDrawer button.cart-remove-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: none;
+}
+
+#CartDrawer button.cart-remove-button:active {
+  transform: scale(0.94);
+}
+
+#CartDrawer button.cart-remove-button .icon,
+#CartDrawer button.cart-remove-button svg {
+  fill: rgba(255, 255, 255, 0.85);
+  transition: fill 200ms ease;
+}
+
+#CartDrawer button.cart-remove-button:hover .icon,
+#CartDrawer button.cart-remove-button:hover svg {
+  fill: #FFFFFF;
+}
+
+@keyframes cart-drawer-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Free-shipping progress bar */
+
+.cart-drawer__shipping-bar {
+  margin-bottom: 2rem;
+}
+
+.cart-drawer__shipping-message {
+  font-family: "PP Neue Montreal";
+  font-size: 1.4rem;
+  color: #FFFFFF;
+  margin: 0 0 0.8rem;
+}
+
+.cart-drawer__shipping-message strong {
+  font-weight: 600;
+}
+
+.cart-drawer__progress-track {
+  width: 100%;
+  height: 1rem;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+}
+
+.cart-drawer__progress-fill {
+  display: block !important;
+  height: 100%;
+  border-radius: 100px;
+  background: linear-gradient(90deg, #34c759 0%, #1e8e3e 100%);
+  transition: width 400ms ease-out;
+}
+
+.cart-drawer__shipping-bar--pulse .cart-drawer__progress-track {
+  animation: cart-drawer-pulse 700ms ease-out;
+}
+
+@keyframes cart-drawer-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 10px rgba(52, 199, 89, 0);
+  }
+}
+
+.cart-drawer__shipping-bar--pulse::before {
+  content: "🎉";
+  position: absolute;
+  font-size: 1.8rem;
+  animation: cart-drawer-confetti 700ms ease-out;
+  pointer-events: none;
+}
+
+@keyframes cart-drawer-confetti {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.6);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.9);
+  }
+}
+
+/* Cross-sell "Complementos" carousel */
+
+.cart-drawer__cross-sell {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem 0;
+  margin-bottom: 2rem;
+}
+
+.cart-drawer__cross-sell-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+}
+
+.cart-drawer__cross-sell-heading {
+  font-family: "PP Neue Montreal";
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.cart-drawer__cross-sell-nav {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.cart-drawer__cross-sell-prev,
+.cart-drawer__cross-sell-next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.cart-drawer__cross-sell-prev .icon,
+.cart-drawer__cross-sell-prev svg,
+.cart-drawer__cross-sell-next .icon,
+.cart-drawer__cross-sell-next svg {
+  fill: #FFFFFF;
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.cart-drawer__cross-sell-prev svg {
+  transform: rotate(180deg);
+}
+
+.cart-drawer__cross-sell-track {
+  display: flex;
+  gap: 1.2rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.cart-drawer__cross-sell-track::-webkit-scrollbar {
+  display: none;
+}
+
+.cart-drawer__cross-sell-card {
+  flex: 0 0 auto;
+  width: 14rem;
+  scroll-snap-align: start;
+  background: #232323;
+  border-radius: 1.2rem;
+  padding: 1.2rem;
+}
+
+.cart-drawer__cross-sell-image-link {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.cart-drawer__cross-sell-image {
+  width: 100%;
+  height: auto;
+  border-radius: 0.8rem;
+  background: #F0F1F4;
+}
+
+.cart-drawer__cross-sell-title {
+  display: block;
+  font-family: "PP Neue Montreal";
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  text-decoration: none;
+  margin-bottom: 0.4rem;
+}
+
+.cart-drawer__cross-sell-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
+}
+
+.cart-drawer__cross-sell-price-compare {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.cart-drawer__cross-sell-price-final {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.cart-drawer__cross-sell-select {
+  width: 100%;
+  margin-bottom: 0.8rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: #FFFFFF;
+  font-family: "PP Neue Montreal";
+  font-size: 1.2rem;
+}
+
+.cart-drawer__cross-sell-select option {
+  color: #1C1C1C;
+}
+
+.cart-drawer__cross-sell-add {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 100px;
+  border: none;
+  background: #FFFFFF;
+  color: #1C1C1C;
+  font-family: "PP Neue Montreal";
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 150ms ease;
+}
+
+.cart-drawer__cross-sell-add[aria-disabled="true"],
+.cart-drawer__cross-sell-add:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cart-drawer__cross-sell-add.loading {
+  opacity: 0.7;
+}
+
+/* Footer buttons */
+
+#CartDrawer .drawer__footer {
+  background-color: #1C1C1C;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#CartDrawer .totals__total,
+#CartDrawer .totals__total-value,
+#CartDrawer .tax-note {
+  color: #FFFFFF;
+}
+
+#CartDrawer .tax-note a {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+#CartDrawer .cart__ctas {
+  display: flex;
+  gap: 1.2rem;
+}
+
+#CartDrawer .cart-drawer__continue-shopping-button,
+#CartDrawer .cart__checkout-button {
+  flex: 1 1 0%;
+  min-width: 0;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+#CartDrawer .cart-drawer__continue-shopping-button {
+  border-radius: 12px;
+  border: 1px solid #FFFFFF;
+  background: transparent;
+  color: #FFFFFF;
+  font-family: "PP Neue Montreal";
+  font-weight: 500;
+}
+
+#CartDrawer .cart__checkout-button {
+  border-radius: 12px;
+  background: #FFFFFF;
+  color: #1C1C1C;
+  font-family: "PP Neue Montreal";
+  font-weight: 600;
+}
+
+/* Empty-cart quick links: "Not sure where to start? Try these collections:" */
+
+.cart-drawer__quick-links {
+  width: 100%;
+  max-width: 34rem;
+  margin: 2.4rem auto 0;
+}
+
+.cart-drawer__quick-links-heading {
+  font-family: "PP Neue Montreal";
+  font-size: 1.4rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  margin: 0 0 1.2rem;
+}
+
+.cart-drawer__quick-links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.cart-drawer__quick-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 1.4rem 1.8rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  color: #FFFFFF;
+  text-decoration: none;
+  font-family: "PP Neue Montreal";
+  font-size: 1.4rem;
+  font-weight: 500;
+  transition: background-color 200ms ease, transform 150ms ease;
+}
+
+.cart-drawer__quick-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateX(2px);
+}
+
+.cart-drawer__quick-link svg {
+  width: 1.4rem;
+  height: 1.4rem;
+  flex-shrink: 0;
+  margin-left: 1rem;
+}

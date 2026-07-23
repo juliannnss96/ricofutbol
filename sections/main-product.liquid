@@ -10,16 +10,19 @@
   {% endif %}
 >
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+  {{ 'disclaimer-product-override.css' | asset_url | stylesheet_tag }}
   {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
   {{ 'component-slider.css' | asset_url | stylesheet_tag }}
   {{ 'component-rating.css' | asset_url | stylesheet_tag }}
   {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+  {{ 'component-add-to-cart-button.css' | asset_url | stylesheet_tag }}
 
   {% unless product.has_only_default_variant %}
     {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
     {{ 'component-swatch-input.css' | asset_url | stylesheet_tag }}
     {{ 'component-swatch.css' | asset_url | stylesheet_tag }}
+    {{ 'component-size-tooltip.css' | asset_url | stylesheet_tag }}
   {% endunless %}
   {%- if product.quantity_price_breaks_configured? -%}
     {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
@@ -36,6 +39,59 @@
         padding-top: {{ section.settings.padding_top }}px;
         padding-bottom: {{ section.settings.padding_bottom }}px;
       }
+    }
+
+    #price-{{ section.id }} {
+      margin-bottom: 0.1rem;
+    }
+
+    .product__installments-delivery {
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    .product__installments-delivery p {
+      margin: 0;
+      font-size: 1.6rem;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .product__installments {
+      color: #1e8e3e;
+    }
+
+    .product__delivery-estimate {
+      color: #9a6a1a;
+    }
+
+    .product__delivery-estimate strong {
+      font-weight: 500;
+    }
+
+    #variant-selects-{{ section.id }} {
+      margin-bottom: 0.1rem;
+    }
+
+    .product__low-stock {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: -0.5rem 0 1rem;
+      line-height: 1;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: #9a6a1a;
+    }
+
+    .product__low-stock.hidden {
+      display: none;
+    }
+
+    .product__low-stock .svg-wrapper svg {
+      width: 1.8rem;
+      height: 1.8rem;
+      fill: #9a6a1a;
     }
   {%- endstyle -%}
 
@@ -125,6 +181,7 @@
                   <span class="texto-descuento">20% de descuento</span>
                   {% endif %}
                 </div>
+                {%- render 'installments-delivery', product: product -%}
                 {% comment %} {% if envio_gratis == true %}
                 <span class="text-envio-gratis">Envío gratis</span>
                 {% endif %} {% endcomment %}
@@ -165,53 +222,30 @@
                   {%- endform -%}
                 </div>
               {%- when 'inventory' -%}
+                {%- liquid
+                  assign selected_variant = product.selected_or_first_available_variant
+                  assign is_low_stock = false
+                  if selected_variant.inventory_management == 'shopify' and selected_variant.inventory_quantity > 0 and selected_variant.inventory_quantity <= block.settings.inventory_threshold
+                    assign is_low_stock = true
+                  endif
+                -%}
                 <p
-                  class="product__inventory{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.inventory_management != 'shopify' %} visibility-hidden{% endif %}"
+                  class="product__low-stock{% unless is_low_stock %} hidden{% endunless %}"
                   {{ block.shopify_attributes }}
                   id="Inventory-{{ section.id }}"
                   role="status"
                 >
-                  {%- if product.selected_or_first_available_variant.inventory_management == 'shopify' -%}
-                    {%- if product.selected_or_first_available_variant.inventory_quantity > 0 -%}
-                      {%- if product.selected_or_first_available_variant.inventory_quantity
-                          <= block.settings.inventory_threshold
-                      -%}
-                        <span class="svg-wrapper" style="color: rgb(238, 148, 65)">
-                          {{- 'icon-inventory-status.svg' | inline_asset_content -}}
-                        </span>
-                        {%- if block.settings.show_inventory_quantity -%}
-                          {{-
-                            'products.product.inventory_low_stock_show_count'
-                            | t: quantity: product.selected_or_first_available_variant.inventory_quantity
-                          -}}
-                        {%- else -%}
-                          {{- 'products.product.inventory_low_stock' | t -}}
-                        {%- endif -%}
-                      {%- else -%}
-                        <span class="svg-wrapper" style="color: rgb(62, 214, 96)">
-                          {{- 'icon-inventory-status.svg' | inline_asset_content -}}
-                        </span>
-                        {%- if block.settings.show_inventory_quantity -%}
-                          {{-
-                            'products.product.inventory_in_stock_show_count'
-                            | t: quantity: product.selected_or_first_available_variant.inventory_quantity
-                          -}}
-                        {%- else -%}
-                          {{- 'products.product.inventory_in_stock' | t -}}
-                        {%- endif -%}
-                      {%- endif -%}
+                  {%- if is_low_stock -%}
+                    <span class="svg-wrapper">
+                      {{- 'icon-stopwatch.svg' | inline_asset_content -}}
+                    </span>
+                    {%- if block.settings.show_inventory_quantity -%}
+                      {{-
+                        'products.product.inventory_low_stock_show_count'
+                        | t: quantity: selected_variant.inventory_quantity
+                      -}}
                     {%- else -%}
-                      {%- if product.selected_or_first_available_variant.inventory_policy == 'continue' -%}
-                        <span class="svg-wrapper" style="color: rgb(62, 214, 96)">
-                          {{- 'icon-inventory-status.svg' | inline_asset_content -}}
-                        </span>
-                        {{- 'products.product.inventory_out_of_stock_continue_selling' | t -}}
-                      {%- else -%}
-                        <span class="svg-wrapper" style="color: rgb(200, 200, 200)">
-                          {{- 'icon-inventory-status.svg' | inline_asset_content -}}
-                        </span>
-                        {{- 'products.product.inventory_out_of_stock' | t -}}
-                      {%- endif -%}
+                      {{- 'products.product.inventory_low_stock' | t -}}
                     {%- endif -%}
                   {%- endif -%}
                 </p>
@@ -235,28 +269,65 @@
                 {{ block.settings.custom_liquid }}
               {%- when 'disclaimer_product' -%}
                 <div class="disclaimer_product">
-                  <div class="ico">
-                    <svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <g clip-path="url(#clip0_5573_9003)">
-                        <path d="M6.32878 32.3933L14.5335 9.83389C14.6032 9.64116 14.7205 9.46917 14.8745 9.33387C15.0285 9.19857 15.2141 9.10434 15.4142 9.05993C15.6143 9.01551 15.8224 9.02235 16.0191 9.0798C16.2159 9.13725 16.395 9.24346 16.5397 9.38857L30.896 23.7448C31.0407 23.8897 31.1465 24.0688 31.2036 24.2654C31.2608 24.4621 31.2674 24.67 31.2228 24.8698C31.1783 25.0697 31.084 25.2551 30.9487 25.4089C30.8135 25.5626 30.6416 25.6798 30.4491 25.7495L7.88971 33.9542C7.67186 34.0338 7.43579 34.0495 7.20932 33.9994C6.98285 33.9493 6.7754 33.8356 6.61139 33.6716C6.44738 33.5076 6.33365 33.3001 6.28358 33.0737C6.23351 32.8472 6.24919 32.6111 6.32878 32.3933Z" stroke="black" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M26.25 11.5308C26.25 11.5308 26.25 7.78082 30 7.78082C33.75 7.78082 33.75 4.03082 33.75 4.03082" stroke="black" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M22.5 2.78082V6.53082" stroke="black" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M33.75 17.7808L36.25 20.2808" stroke="black" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M33.75 12.7808L37.5 11.5308" stroke="black" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M12.2021 16.2324L24.049 28.0792" stroke="black" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M15.7961 31.0792L9.19922 24.4824" stroke="black" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
-                      </g>
-                      <defs>
-                        <clipPath id="clip0_5573_9003">
-                          <rect width="40" height="40" fill="white" transform="translate(0 0.280823)"/>
-                        </clipPath>
-                      </defs>
-                    </svg>
+                  <div class="disclaimer_product__row">
+                    <div class="ico">
+                      <svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="4" y="10" width="32" height="22" rx="4" stroke="black" stroke-width="2.75"/>
+                        <path d="M4 17H36" stroke="black" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9 25H16" stroke="black" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                    <div class="cont-texto">
+                      <h3>{{ block.settings.titulo }}</h3>
+                      <p>{{ block.settings.subtitulo }}</p>
+                    </div>
                   </div>
-                  <div class="cont-texto">
-                    <h3>{{ block.settings.titulo }}</h3>
-                    <p>{{ block.settings.subtitulo }}</p>
-                  </div>
+                  {%- if block.settings.titulo_2 != blank -%}
+                    <div class="disclaimer_product__divider"></div>
+                    <div class="disclaimer_product__row">
+                      <div class="ico">
+                        <svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="20" cy="20.5" r="16" stroke="black" stroke-width="2.75"/>
+                          <path
+                            d="M20 12v17M25 16.5c0-2.5-2.5-3.5-5-3.5s-5 1.2-5 3.8c0 5 10 2 10 7 0 2.6-2.5 3.8-5 3.8s-5-1-5-3.5"
+                            stroke="black"
+                            stroke-width="2.75"
+                            stroke-linecap="round"
+                          />
+                        </svg>
+                      </div>
+                      <div class="cont-texto">
+                        <h3>{{ block.settings.titulo_2 }}</h3>
+                        <p>{{ block.settings.subtitulo_2 }}</p>
+                      </div>
+                    </div>
+                  {%- endif -%}
+                  {%- if block.settings.titulo_3 != blank -%}
+                    <div class="disclaimer_product__divider"></div>
+                    <div class="disclaimer_product__row">
+                      <div class="ico">
+                        <svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M20 6l12 4v9c0 8-5 13.5-12 16-7-2.5-12-8-12-16v-9l12-4z"
+                            stroke="black"
+                            stroke-width="2.75"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M14.5 20.5l3.5 3.5 7.5-7.5"
+                            stroke="black"
+                            stroke-width="2.75"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </div>
+                      <div class="cont-texto">
+                        <h3>{{ block.settings.titulo_3 }}</h3>
+                        <p>{{ block.settings.subtitulo_3 }}</p>
+                      </div>
+                    </div>
+                  {%- endif -%}
                 </div>
               {%- when 'collapsible_tab' -%}
                 <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
@@ -273,6 +344,15 @@
                     <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
                       {{ block.settings.content }}
                       {{ block.settings.page.content }}
+                      {%- if block.settings.show_payment_icons -%}
+                        <ul class="list-payment list-unstyled" role="list">
+                          {%- for type in shop.enabled_payment_types -%}
+                            <li class="list-payment__item">
+                              {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      {%- endif -%}
                     </div>
                   </details>
                 </div>
@@ -1208,6 +1288,12 @@
           "type": "page",
           "id": "page",
           "label": "t:sections.main-product.blocks.collapsible_tab.settings.page.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_icons",
+          "label": "Mostrar íconos de métodos de pago",
+          "default": false
         }
       ]
     },
@@ -1229,6 +1315,26 @@
           "type": "text",
           "id": "svg",
           "label": "svg"
+        },
+        {
+          "type": "text",
+          "id": "titulo_2",
+          "label": "Título fila 2 (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "subtitulo_2",
+          "label": "Subtítulo fila 2 (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "titulo_3",
+          "label": "Título fila 3 (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "subtitulo_3",
+          "label": "Subtítulo fila 3 (opcional)"
         }
       ]
     },
