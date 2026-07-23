@@ -1,0 +1,40 @@
+/* Smaller, more compact icon+row sizing for the product page "disclaimer"
+   banner (cuotas / descuento / garantía): each row becomes its own
+   individually-rounded pill stacked vertically, with a bolder icon/text
+   treatment. Also carries the base flex/row rules this theme's custom.css
+   never had (it only ever supported a single row), so this file is
+   self-sufficient and doesn't require editing the large custom.css. */
+
+.product .disclaimer_product {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 0;
+  gap: 10px;
+  background-color: transparent;
+}
+
+.product .disclaimer_product__row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 14px;
+  background-color: #f0f1f4;
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+
+.product .disclaimer_product__divider {
+  display: none;
+}
+
+.product .disclaimer_product .ico svg {
+  width: 22px;
+  height: 22px;
+}
+
+.product .disclaimer_product .cont-texto h3 {
+  margin-bottom: 0;
+  font-weight: 700;
+}
