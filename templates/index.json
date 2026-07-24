@@ -25,7 +25,6 @@
     },
     "marcas_slider_WwPfzX": {
       "type": "marcas-slider",
-      "disabled": true,
       "settings": {}
     },
     "categorias_destacadas_home_GQULtC": {
@@ -34,7 +33,6 @@
     },
     "tipos_jugador_4ak4XL": {
       "type": "tipos-jugador",
-      "disabled": true,
       "settings": {}
     },
     "bloque_flash_9gMcMW": {
@@ -83,7 +81,6 @@
     },
     "signatures_home_JfjYKd": {
       "type": "signatures-home",
-      "disabled": true,
       "settings": {}
     },
     "destacados_home_rG4cNh": {
