@@ -61,8 +61,19 @@
         {% assign envio_gratis = true %}
         {% endif %}
     {% endfor %}
-    {% if envio_gratis == true %}
-    <span class="label-envio-gratis">Envío gratis</span>
+    {% assign stock_usa = false %}
+    {% if product.tags contains "Stock USA" %}
+      {% assign stock_usa = true %}
+    {% endif %}
+    {% if envio_gratis == true or stock_usa == true %}
+    <div class="product-badges-row">
+      {% if envio_gratis == true %}
+        <span class="label-envio-gratis">Envío gratis</span>
+      {% endif %}
+      {% if stock_usa == true %}
+        <span class="label-stock-usa">🇺🇸 Stock USA</span>
+      {% endif %}
+    </div>
     {% endif %}
     <ul
       id="Slider-Gallery-{{ section.id }}"
