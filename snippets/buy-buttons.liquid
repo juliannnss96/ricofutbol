@@ -82,7 +82,12 @@
               disabled
             {% endif %}
           >
-            <span>
+            <span class="product-form__submit-content">
+              {%- unless product.selected_or_first_available_variant == null or product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
+                <span class="svg-wrapper product-form__submit-icon">
+                  {{- 'icon-cart.svg' | inline_asset_content -}}
+                </span>
+              {%- endunless -%}
               {%- if product.selected_or_first_available_variant == null -%}
                 {{ 'products.product.unavailable' | t }}
               {%- elsif product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
