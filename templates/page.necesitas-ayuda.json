@@ -1,1 +1,224 @@
-{"sections":{"main":{"type":"main-page","settings":{"padding_top":28,"padding_bottom":28}},"collapsible_content_GyyDMd":{"type":"collapsible-content","blocks":{"collapsible_row_PTa9Kr":{"type":"collapsible_row","settings":{"heading":"¿Cómo hago para seguir mi pedido?","icon":"box","row_content":"<p>Una vez tu pedido haya sido despachado recibirás un mail de confirmación con tu respectivo número de tracking para que puedas realizar un seguimiento en vivo de tu envío.<\/p>","page":""}},"collapsible_row_Dj4iW8":{"type":"collapsible_row","settings":{"heading":"¿Cuál es la demora de los envíos? ¿Por qué medio se realizan?","icon":"box","row_content":"<p>Llegamos a cada rincón del país y enviamos vía Andreani. Una vez realizada la compra tu pedido será despachado en menos de 24 horas y demorará de 1 a 4 días hábiles en llegar a tus manos.<\/p>","page":""}},"collapsible_row_TFFaqP":{"type":"collapsible_row","settings":{"heading":"¿De dónde son?","icon":"box","row_content":"<p>Somos de Rosario, Santa Fe, Argentina. Realizamos envíos a todo el país <br\/>sin excepción. No tenemos local físico, sólo trabajamos vía online.<\/p>","page":""}}},"block_order":["collapsible_row_PTa9Kr","collapsible_row_Dj4iW8","collapsible_row_TFFaqP"],"settings":{"caption":"","heading":"Envío y entrega","heading_size":"h1","heading_alignment":"center","layout":"none","color_scheme":"","container_color_scheme":"","open_first_collapsible_row":false,"image_ratio":"adapt","desktop_layout":"image_second","padding_top":36,"padding_bottom":36}},"collapsible_content_PNkfBX":{"type":"collapsible-content","blocks":{"collapsible_row_WJ8bYd":{"type":"collapsible_row","settings":{"heading":"¿Qué métodos de pago utilizan?","icon":"clipboard","row_content":"<p>Los métodos de pago que admitimos son: Tarjeta de crédito y débito (en hasta 12 cuotas)<br\/>Transferencia Bancaria<br\/>Efectivo – SOLO en Rosario<br\/>RapiPago – PagoFácil<br\/>Criptomonedas estables<\/p>","page":""}},"collapsible_row_pHC4tJ":{"type":"collapsible_row","disabled":true,"settings":{"heading":"¿Cómo hago para comprar?","icon":"clipboard","row_content":"<p>Explorá la tienda, encontrá el\/los productos que buscabas, agregalos al carrito y finalizá tu compra siguiendo las instrucciones.<\/p>","page":""}}},"block_order":["collapsible_row_WJ8bYd","collapsible_row_pHC4tJ"],"settings":{"caption":"","heading":"Opciones de pago","heading_size":"h1","heading_alignment":"center","layout":"none","color_scheme":"","container_color_scheme":"","open_first_collapsible_row":false,"image_ratio":"adapt","desktop_layout":"image_second","padding_top":36,"padding_bottom":36}},"collapsible_content_MN647J":{"type":"collapsible-content","blocks":{"collapsible_row_cnp8TQ":{"type":"collapsible_row","settings":{"heading":"¿Los productos son originales?","icon":"question_mark","row_content":"<p>Todos nuestros productos son originales y cuentan con una garantía total de 60 días.<\/p>","page":""}},"collapsible_row_dKmkeT":{"type":"collapsible_row","settings":{"heading":"¿Puedo encargar un producto?","icon":"question_mark","row_content":"<p>Solo trabajamos con el stock disponible en nuestros almacenes, el  cual vamos actualizando con nuevos productos a diario. No realizamos encargues particulares.<\/p>","page":""}},"collapsible_row_cNBc6W":{"type":"collapsible_row","disabled":true,"settings":{"heading":"¿Qué pasa si me equivoqué de talle o tengo un problema con mi compra?","icon":"question_mark","row_content":"<p>Si te equivocaste de talle o simplemente no estás satisfecho con tu compra no te preocupes! Dispondrás de 7 días para devolver tu producto a nuestros almacenes.<\/p>","page":""}},"collapsible_row_8yr9RR":{"type":"collapsible_row","settings":{"heading":"¿Cómo hago para comprar?","icon":"question_mark","row_content":"<p>Ingresa a la tienda, encuentra el\/los producto\/s que buscabas, agregalo\/s a tu bolso y luego finaliza tu compra!<\/p>","page":""}}},"block_order":["collapsible_row_cnp8TQ","collapsible_row_dKmkeT","collapsible_row_cNBc6W","collapsible_row_8yr9RR"],"settings":{"caption":"","heading":"Otros","heading_size":"h1","heading_alignment":"center","layout":"none","color_scheme":"","container_color_scheme":"","open_first_collapsible_row":false,"image_ratio":"adapt","desktop_layout":"image_second","padding_top":36,"padding_bottom":36}},"rich_text_YwGKm3":{"type":"rich-text","blocks":{"heading_7ByD8m":{"type":"heading","settings":{"heading":"Necesito asistencia","heading_size":"h1"}},"text_XRT4EM":{"type":"text","settings":{"text":"<p>WhatsApp: +54 9 341 566 5456<\/p>"}},"button_7J3WzD":{"type":"button","settings":{"button_label":"Escribinos al Whatsapp","button_link":"https:\/\/web.whatsapp.com\/send?phone=5493413800272&text=Hola%20Rico%20Seller%2C%20ten%C3%ADa%20una%20duda%20con%20respecto%20a","button_style_secondary":false,"button_label_2":"","button_link_2":"","button_style_secondary_2":false}}},"block_order":["heading_7ByD8m","text_XRT4EM","button_7J3WzD"],"settings":{"desktop_content_position":"center","content_alignment":"center","color_scheme":"","full_width":true,"padding_top":40,"padding_bottom":52}}},"order":["main","collapsible_content_GyyDMd","collapsible_content_PNkfBX","collapsible_content_MN647J","rich_text_YwGKm3"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "collapsible_content_GyyDMd": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_PTa9Kr": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Cómo hago para seguir mi pedido?",
+            "icon": "box",
+            "row_content": "<p>Una vez tu pedido haya sido despachado recibirás un mail de confirmación con tu respectivo número de tracking para que puedas realizar un seguimiento en vivo de tu envío.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_Dj4iW8": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Cuál es la demora de los envíos? ¿Por qué medio se realizan?",
+            "icon": "box",
+            "row_content": "<p>Llegamos a cada rincón del país y realizamos envíos a través de Andreani. Los productos con stock nacional se despachan en menos de 72 horas hábiles y demoran entre 2 y 10 días hábiles en llegar a destino.</p><p>Además, contamos con productos exclusivos importados a pedido. En estos casos, el tiempo estimado de entrega es de 7 a 15 días hábiles aproximadamente. Todos los envíos incluyen seguimiento para que puedas monitorear tu pedido en todo momento.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_TFFaqP": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿De dónde son?",
+            "icon": "box",
+            "row_content": "<p>Somos de Rosario, Santa Fe, Argentina. Realizamos envíos a todo el país <br/>sin excepción.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_PTa9Kr",
+        "collapsible_row_Dj4iW8",
+        "collapsible_row_TFFaqP"
+      ],
+      "settings": {
+        "caption": "Todo lo que necesitás saber sobre el seguimiento y los tiempos de entrega de tu pedido.",
+        "heading": "Envío y entrega",
+        "heading_size": "h1",
+        "heading_alignment": "left",
+        "layout": "none",
+        "color_scheme": "",
+        "container_color_scheme": "",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collapsible_content_PNkfBX": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_WJ8bYd": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Qué métodos de pago utilizan?",
+            "icon": "clipboard",
+            "row_content": "<p>Los métodos de pago que admitimos son: Tarjeta de crédito y débito (en hasta 3 cuotas sin interés sin monto mínimo)<br/>Transferencia Bancaria<br/>Efectivo – SOLO en Rosario<br/>RapiPago – PagoFácil<br/>Criptomonedas estables</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_pHC4tJ": {
+          "type": "collapsible_row",
+          "disabled": true,
+          "settings": {
+            "heading": "¿Cómo hago para comprar?",
+            "icon": "clipboard",
+            "row_content": "<p>Explorá la tienda, encontrá el/los productos que buscabas, agregalos al carrito y finalizá tu compra siguiendo las instrucciones.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_WJ8bYd",
+        "collapsible_row_pHC4tJ"
+      ],
+      "settings": {
+        "caption": "Resolvemos tus dudas sobre las formas de pago disponibles en la tienda.",
+        "heading": "Opciones de pago",
+        "heading_size": "h1",
+        "heading_alignment": "left",
+        "layout": "none",
+        "color_scheme": "",
+        "container_color_scheme": "",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collapsible_content_MN647J": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_cnp8TQ": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Los productos son originales?",
+            "icon": "question_mark",
+            "row_content": "<p>Todos nuestros productos son originales y cuentan con una garantía total de 60 días.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_dKmkeT": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Puedo encargar un producto?",
+            "icon": "question_mark",
+            "row_content": "<p>Solo trabajamos con el stock disponible en nuestros almacenes, el  cual vamos actualizando con nuevos productos a diario. No realizamos encargues particulares.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_cNBc6W": {
+          "type": "collapsible_row",
+          "disabled": true,
+          "settings": {
+            "heading": "¿Qué pasa si me equivoqué de talle o tengo un problema con mi compra?",
+            "icon": "question_mark",
+            "row_content": "<p>Si te equivocaste de talle o simplemente no estás satisfecho con tu compra no te preocupes! Dispondrás de 7 días para devolver tu producto a nuestros almacenes.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_8yr9RR": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Cómo hago para comprar?",
+            "icon": "question_mark",
+            "row_content": "<p>Ingresa a la tienda, encuentra el/los producto/s que buscabas, agregalo/s a tu bolso y luego finaliza tu compra!</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_cnp8TQ",
+        "collapsible_row_dKmkeT",
+        "collapsible_row_cNBc6W",
+        "collapsible_row_8yr9RR"
+      ],
+      "settings": {
+        "caption": "Otras preguntas frecuentes sobre nuestros productos y la compra.",
+        "heading": "Otros",
+        "heading_size": "h1",
+        "heading_alignment": "left",
+        "layout": "none",
+        "color_scheme": "",
+        "container_color_scheme": "",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_YwGKm3": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_7ByD8m": {
+          "type": "heading",
+          "settings": {
+            "heading": "Necesito asistencia",
+            "heading_size": "h1"
+          }
+        },
+        "text_XRT4EM": {
+          "type": "text",
+          "settings": {
+            "text": "<p>WhatsApp: <strong>+1 555-992-3499</strong></p>"
+          }
+        },
+        "button_7J3WzD": {
+          "type": "button",
+          "settings": {
+            "button_label": "Escribinos al Whatsapp",
+            "button_link": "https://web.whatsapp.com/send?phone=15559923499&text=Hola%20Rico%20Seller%2C%20ten%C3%ADa%20una%20duda%20con%20respecto%20a",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_7ByD8m",
+        "text_XRT4EM",
+        "button_7J3WzD"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "main",
+    "collapsible_content_GyyDMd",
+    "collapsible_content_PNkfBX",
+    "collapsible_content_MN647J",
+    "rich_text_YwGKm3"
+  ]
+}
