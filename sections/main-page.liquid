@@ -1,4 +1,7 @@
 {{ 'section-main-page.css' | asset_url | stylesheet_tag }}
+{%- if page.template_suffix == 'necesitas-ayuda' -%}
+  {{ 'help-page-heading.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -18,9 +21,16 @@
     <div class="col-12">
 
       <div class="page-width page-width--narrow section-{{ section.id }}-padding">
-        <h1 class="main-page-title page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-          {{ page.title | escape }}
-        </h1>
+        {%- if page.template_suffix == 'necesitas-ayuda' -%}
+          <div class="help-page-heading{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+            <p class="help-page-heading__line help-page-heading__line--bold">Bienvenido nuevamente.</p>
+            <p class="help-page-heading__line help-page-heading__line--light">¿Cómo podemos ayudarte?</p>
+          </div>
+        {%- else -%}
+          <h1 class="main-page-title page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+            {{ page.title | escape }}
+          </h1>
+        {%- endif -%}
         <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           {{ page.content }}
         </div>

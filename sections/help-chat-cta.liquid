@@ -1,0 +1,112 @@
+{{ 'help-chat-cta.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="page-width page-width--narrow">
+    {%- if section.settings.whatsapp_link != blank -%}
+      <a
+        href="{{ section.settings.whatsapp_link }}"
+        class="help-chat-cta"
+        target="_blank"
+        rel="noopener"
+      >
+        <span class="help-chat-cta__icon">
+          {% render 'icon-chat-bubble' %}
+        </span>
+        <span class="help-chat-cta__heading">{{ section.settings.heading }}</span>
+        <span class="help-chat-cta__line">{{ section.settings.line_1 }}</span>
+        <span class="help-chat-cta__line">{{ section.settings.line_2 }}</span>
+      </a>
+    {%- else -%}
+      <div class="help-chat-cta help-chat-cta--disabled">
+        <span class="help-chat-cta__icon">
+          {% render 'icon-chat-bubble' %}
+        </span>
+        <span class="help-chat-cta__heading">{{ section.settings.heading }}</span>
+        <span class="help-chat-cta__line">{{ section.settings.line_1 }}</span>
+        <span class="help-chat-cta__line">{{ section.settings.line_2 }}</span>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Chat CTA (ayuda)",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Chateemos"
+    },
+    {
+      "type": "text",
+      "id": "line_1",
+      "label": "Línea 1",
+      "default": "Disponible las 24 horas"
+    },
+    {
+      "type": "text",
+      "id": "line_2",
+      "label": "Línea 2",
+      "default": "7 días a la semana"
+    },
+    {
+      "type": "url",
+      "id": "whatsapp_link",
+      "label": "Link de WhatsApp"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 52
+    }
+  ],
+  "presets": [
+    {
+      "name": "Chat CTA (ayuda)"
+    }
+  ]
+}
+{% endschema %}

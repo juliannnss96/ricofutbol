@@ -171,44 +171,14 @@
         "padding_bottom": 36
       }
     },
-    "rich_text_YwGKm3": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_7ByD8m": {
-          "type": "heading",
-          "settings": {
-            "heading": "Necesito asistencia",
-            "heading_size": "h1"
-          }
-        },
-        "text_XRT4EM": {
-          "type": "text",
-          "settings": {
-            "text": "<p>WhatsApp: <strong>+1 555-992-3499</strong></p>"
-          }
-        },
-        "button_7J3WzD": {
-          "type": "button",
-          "settings": {
-            "button_label": "Escribinos al Whatsapp",
-            "button_link": "https://web.whatsapp.com/send?phone=15559923499&text=Hola%20Rico%20Seller%2C%20ten%C3%ADa%20una%20duda%20con%20respecto%20a",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_7ByD8m",
-        "text_XRT4EM",
-        "button_7J3WzD"
-      ],
+    "help_chat_cta": {
+      "type": "help-chat-cta",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
+        "heading": "Chateemos",
+        "line_1": "Disponible las 24 horas",
+        "line_2": "7 días a la semana",
+        "whatsapp_link": "",
         "color_scheme": "",
-        "full_width": true,
         "padding_top": 40,
         "padding_bottom": 52
       }
@@ -219,6 +189,6 @@
     "collapsible_content_GyyDMd",
     "collapsible_content_PNkfBX",
     "collapsible_content_MN647J",
-    "rich_text_YwGKm3"
+    "help_chat_cta"
   ]
 }
