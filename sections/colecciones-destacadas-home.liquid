@@ -1,0 +1,114 @@
+<section id="colecciones-destacadas-home">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				{%- if section.settings.heading != blank -%}
+					<h2 class="colecciones-destacadas-home__heading">{{ section.settings.heading }}</h2>
+				{%- endif -%}
+			</div>
+		</div>
+	</div>
+	<div class="full-bleed-scroller">
+		<div class="cont-cont-categorias-home">
+			<div class="categorias-home-cont scrollnegro-h">
+				{%- for block in section.blocks -%}
+					{%- assign coleccion = block.settings.coleccion -%}
+					{%- if block.settings.imagen != blank -%}
+						{%- assign img_url = block.settings.imagen | image_url: width: 800 -%}
+					{%- elsif coleccion.image != blank -%}
+						{%- assign img_url = coleccion.image | image_url: width: 800 -%}
+					{%- elsif coleccion.products.first.featured_image != blank -%}
+						{%- assign img_url = coleccion.products.first.featured_image | image_url: width: 800 -%}
+					{%- else -%}
+						{%- assign img_url = '' -%}
+					{%- endif -%}
+					{%- assign titulo = block.settings.titulo | default: coleccion.title -%}
+					{%- assign link = coleccion.url | default: block.settings.link -%}
+					<figure class="categoria-destacada-item" {{ block.shopify_attributes }}>
+						<div class="cont-img" style="background-image: url('{{ img_url }}');"></div>
+						<a href="{{ link }}">
+							<h3>{{ titulo }}</h3>
+							{%- if block.settings.texto_boton != blank -%}
+								<span class="cta-pill">{{ block.settings.texto_boton }}</span>
+							{%- endif -%}
+						</a>
+					</figure>
+				{%- endfor -%}
+			</div>
+		</div>
+	</div>
+
+	<div class="container container-scrollbar">
+		<div class="row">
+			<div class="col-12">
+				<div class="custom-scroll-track">
+					<div class="custom-scroll-thumb"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% schema %}
+{
+	"name": "Colecciones destacadas",
+	"settings": [
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Título",
+			"default": "Colecciones destacadas"
+		}
+	],
+	"blocks": [
+		{
+			"type": "coleccion",
+			"name": "Colección",
+			"settings": [
+				{
+					"type": "collection",
+					"id": "coleccion",
+					"label": "Colección"
+				},
+				{
+					"type": "text",
+					"id": "titulo",
+					"label": "Título (opcional)",
+					"info": "Si lo dejás vacío usa el nombre de la colección"
+				},
+				{
+					"type": "image_picker",
+					"id": "imagen",
+					"label": "Imagen (opcional)",
+					"info": "Si la dejás vacía usa la imagen de la colección o la del primer producto"
+				},
+				{
+					"type": "text",
+					"id": "texto_boton",
+					"label": "Texto del botón",
+					"default": "Ver colección"
+				},
+				{
+					"type": "url",
+					"id": "link",
+					"label": "Link (opcional)",
+					"info": "Si lo dejás vacío usa el link de la colección"
+				}
+			]
+		}
+	],
+	"presets": [
+		{
+			"name": "Colecciones destacadas",
+			"blocks": [
+				{ "type": "coleccion", "settings": { "titulo": "Mercurial", "texto_boton": "Ver botas" } },
+				{ "type": "coleccion", "settings": { "titulo": "Tiempo", "texto_boton": "Ver botas" } },
+				{ "type": "coleccion", "settings": { "titulo": "Phantom", "texto_boton": "Ver botas" } },
+				{ "type": "coleccion", "settings": { "titulo": "Predator", "texto_boton": "Ver botas" } },
+				{ "type": "coleccion", "settings": { "titulo": "F50", "texto_boton": "Ver botas" } },
+				{ "type": "coleccion", "settings": { "titulo": "Copa", "texto_boton": "Ver botas" } }
+			]
+		}
+	]
+}
+{% endschema %}

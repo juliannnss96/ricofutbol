@@ -249,6 +249,9 @@ $(document).ready(function () {
 
 		// Init Categorías Destacadas
 		initCustomScrollbar('#categorias-home', '.categorias-home-cont');
+
+		// Init Colecciones Destacadas (home)
+		initCustomScrollbar('#colecciones-destacadas-home', '.categorias-home-cont');
 	}
 
 	// Initialize on load and resize

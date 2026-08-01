@@ -1269,7 +1269,8 @@
 #signatures-home .container-scrollbar,
 #amigos-de-la-casa .container-scrollbar,
 #marcas-home .container-scrollbar,
-#categorias-home .container-scrollbar {
+#categorias-home .container-scrollbar,
+#colecciones-destacadas-home .container-scrollbar {
   padding-bottom: 20px;
   /* Ensure space */
   position: relative;
@@ -1282,13 +1283,15 @@
 #signatures-home .container-scrollbar.scrolling,
 #amigos-de-la-casa .container-scrollbar.scrolling,
 #marcas-home .container-scrollbar.scrolling,
-#categorias-home .container-scrollbar.scrolling {
+#categorias-home .container-scrollbar.scrolling,
+#colecciones-destacadas-home .container-scrollbar.scrolling {
   opacity: 1;
 }
 
-/* Always visible on Desktop for Marcas */
+/* Always visible on Desktop for Marcas & Colecciones destacadas (items overflow) */
 @media (min-width: 992px) {
-  #marcas-home .container-scrollbar {
+  #marcas-home .container-scrollbar,
+  #colecciones-destacadas-home .container-scrollbar {
     opacity: 1 !important;
   }
   /* Hide scrollbar on desktop for Categorias (Items fit 100%) */
@@ -1300,7 +1303,8 @@
 #signatures-home .container-scrollbar,
 #amigos-de-la-casa .container-scrollbar,
 #marcas-home .container-scrollbar,
-#categorias-home .container-scrollbar {
+#categorias-home .container-scrollbar,
+#colecciones-destacadas-home .container-scrollbar {
   margin-top: 0;
 }
 
@@ -1317,7 +1321,8 @@
 #signatures-home:hover .container-scrollbar,
 #amigos-de-la-casa:hover .container-scrollbar,
 #marcas-home:hover .container-scrollbar,
-#categorias-home:hover .container-scrollbar {
+#categorias-home:hover .container-scrollbar,
+#colecciones-destacadas-home:hover .container-scrollbar {
   opacity: 1;
 }
 
@@ -1326,7 +1331,8 @@
 #signatures-home .custom-scroll-track,
 #amigos-de-la-casa .custom-scroll-track,
 #marcas-home .custom-scroll-track,
-#categorias-home .custom-scroll-track {
+#categorias-home .custom-scroll-track,
+#colecciones-destacadas-home .custom-scroll-track {
   width: 100%;
   height: 6px;
   /* Slightly thicker */
@@ -1343,7 +1349,8 @@
 #signatures-home .custom-scroll-thumb,
 #amigos-de-la-casa .custom-scroll-thumb,
 #marcas-home .custom-scroll-thumb,
-#categorias-home .custom-scroll-thumb {
+#categorias-home .custom-scroll-thumb,
+#colecciones-destacadas-home .custom-scroll-thumb {
   height: 100%;
   width: 20%;
   /* Will be set by JS */
@@ -1363,7 +1370,8 @@
 #signatures-home .custom-scroll-thumb:active,
 #amigos-de-la-casa .custom-scroll-thumb:active,
 #marcas-home .custom-scroll-thumb:active,
-#categorias-home .custom-scroll-thumb:active {
+#categorias-home .custom-scroll-thumb:active,
+#colecciones-destacadas-home .custom-scroll-thumb:active {
   cursor: grabbing;
   background-color: #000;
 }
@@ -1372,7 +1380,8 @@
 #signatures-home .custom-scroll-thumb:hover,
 #amigos-de-la-casa .custom-scroll-thumb:hover,
 #marcas-home .custom-scroll-thumb:hover,
-#categorias-home .custom-scroll-thumb:hover {
+#categorias-home .custom-scroll-thumb:hover,
+#colecciones-destacadas-home .custom-scroll-thumb:hover {
   background-color: #1a1a1a;
 }
 
