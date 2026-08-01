@@ -1,0 +1,167 @@
+#colecciones-destacadas-home {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+#colecciones-destacadas-home .colecciones-destacadas-home__heading {
+  font-family: "PP Neue Montreal", sans-serif;
+  font-weight: 700;
+  font-size: 2.8rem;
+  text-transform: uppercase;
+  letter-spacing: -0.02rem;
+  margin: 0 0 24px;
+  color: #1c1c1c;
+}
+
+#colecciones-destacadas-home .categorias-home-cont {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  list-style-type: none;
+  overflow-x: auto;
+  padding-bottom: 30px;
+  width: 100%;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+#colecciones-destacadas-home .categorias-home-cont::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 991px) {
+  #colecciones-destacadas-home .categorias-home-cont {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  #colecciones-destacadas-home .categorias-home-cont figure {
+    flex: 0 0 60vw !important;
+    flex-basis: 60vw !important;
+  }
+}
+
+#colecciones-destacadas-home .categorias-home-cont figure {
+  flex: 0 0 260px;
+  width: 260px;
+  aspect-ratio: 0.72/1;
+  margin: 0;
+  border-radius: 10px;
+  background-position: center;
+  background-size: cover;
+  transition: all 200ms;
+  position: relative;
+  overflow: hidden;
+}
+
+#colecciones-destacadas-home .categorias-home-cont figure:hover .cont-img,
+#colecciones-destacadas-home .categorias-home-cont figure:focus .cont-img {
+  transform: scale(1.08, 1.08);
+}
+
+#colecciones-destacadas-home .categorias-home-cont figure .cont-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: inline-block;
+  background-position: center;
+  background-size: cover;
+  background-color: #f0f1f4;
+  transition: all 300ms;
+}
+
+#colecciones-destacadas-home .categorias-home-cont figure:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 60%;
+  top: 40%;
+  left: 0;
+  border-radius: 10px;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.75) 100%);
+}
+
+#colecciones-destacadas-home .categorias-home-cont figure a {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+#colecciones-destacadas-home .categorias-home-cont figure h3 {
+  color: #fff;
+  position: absolute;
+  left: 20px;
+  bottom: 60px;
+  margin: 0;
+  font-family: "PP Neue Montreal", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.24px;
+  max-width: calc(100% - 40px);
+}
+
+#colecciones-destacadas-home .categorias-home-cont figure .cta-pill {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  display: inline-block;
+  background-color: #fff;
+  color: #1c1c1c;
+  font-family: "PP Neue Montreal", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 0.9rem 1.8rem;
+  border-radius: 999px;
+  transition: transform 200ms ease, background-color 200ms ease;
+}
+
+#colecciones-destacadas-home .categorias-home-cont figure a:hover .cta-pill {
+  transform: scale(1.04);
+}
+
+/* Scrollbar (mismo patron que el resto de los carruseles del home, pero
+   self-contained aca porque el archivo compartido que realmente carga el
+   sitio es custom_home.min.css, no custom_home.css). */
+#colecciones-destacadas-home .container-scrollbar {
+  padding-bottom: 20px;
+  position: relative;
+  z-index: 5;
+  opacity: 1;
+}
+
+#colecciones-destacadas-home .custom-scroll-track {
+  width: 100%;
+  height: 6px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+  display: block;
+}
+
+#colecciones-destacadas-home .custom-scroll-thumb {
+  height: 100%;
+  width: 20%;
+  background-color: #1c1c1c;
+  border-radius: 3px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: grab;
+  touch-action: none;
+  z-index: 10;
+  display: block !important;
+}
+
+#colecciones-destacadas-home .custom-scroll-thumb:active {
+  cursor: grabbing;
+  background-color: #000;
+}
+
+#colecciones-destacadas-home .custom-scroll-thumb:hover {
+  background-color: #1a1a1a;
+}
