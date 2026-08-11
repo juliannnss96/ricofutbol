@@ -33,41 +33,77 @@
     },
     "colecciones_destacadas_home_XkR9wZ": {
       "type": "colecciones-destacadas-home",
-      "name": "Colecciones destacadas",
       "blocks": {
         "coleccion_mercurial": {
           "type": "coleccion",
-          "settings": { "coleccion": "mercurial", "titulo": "Mercurial", "texto_boton": "Ver botas" }
-        },
-        "coleccion_tiempo": {
-          "type": "coleccion",
-          "settings": { "coleccion": "tiempo", "titulo": "Tiempo", "texto_boton": "Ver botas" }
+          "settings": {
+            "coleccion": "mercurial",
+            "titulo": "Mercurial",
+            "imagen": "shopify://shop_images/MERCURIAL.jpg",
+            "texto_boton": "Ver botas",
+            "link": ""
+          }
         },
         "coleccion_phantom": {
           "type": "coleccion",
-          "settings": { "coleccion": "phantom", "titulo": "Phantom", "texto_boton": "Ver botas" }
+          "settings": {
+            "coleccion": "phantom",
+            "titulo": "Phantom",
+            "imagen": "shopify://shop_images/PHANTOM.jpg",
+            "texto_boton": "Ver botas",
+            "link": ""
+          }
         },
-        "coleccion_predator": {
+        "coleccion_tiempo": {
           "type": "coleccion",
-          "settings": { "coleccion": "predator", "titulo": "Predator", "texto_boton": "Ver botas" }
+          "settings": {
+            "coleccion": "tiempo",
+            "titulo": "Tiempo",
+            "imagen": "shopify://shop_images/TIEMPO.jpg",
+            "texto_boton": "Ver botas",
+            "link": ""
+          }
         },
         "coleccion_f50": {
           "type": "coleccion",
-          "settings": { "coleccion": "f50", "titulo": "F50", "texto_boton": "Ver botas" }
+          "settings": {
+            "coleccion": "f50",
+            "titulo": "F50",
+            "imagen": "shopify://shop_images/F50.jpg",
+            "texto_boton": "Ver botas",
+            "link": ""
+          }
+        },
+        "coleccion_predator": {
+          "type": "coleccion",
+          "settings": {
+            "coleccion": "predator",
+            "titulo": "Predator",
+            "imagen": "shopify://shop_images/PREDATOR.jpg",
+            "texto_boton": "Ver botas",
+            "link": ""
+          }
         },
         "coleccion_copa": {
           "type": "coleccion",
-          "settings": { "coleccion": "copa", "titulo": "Copa", "texto_boton": "Ver botas" }
+          "settings": {
+            "coleccion": "copa",
+            "titulo": "Copa",
+            "imagen": "shopify://shop_images/COPA.jpg",
+            "texto_boton": "Ver botas",
+            "link": ""
+          }
         }
       },
       "block_order": [
         "coleccion_mercurial",
-        "coleccion_tiempo",
         "coleccion_phantom",
-        "coleccion_predator",
+        "coleccion_tiempo",
         "coleccion_f50",
+        "coleccion_predator",
         "coleccion_copa"
       ],
+      "name": "Colecciones destacadas",
       "settings": {
         "heading": "Colecciones destacadas"
       }
@@ -85,7 +121,8 @@
         "texto_cat1": "Botines",
         "collection_cat1": "botines",
         "texto_cat2": "Indumentaria",
-        "collection_cat2": "indumentaria"
+        "collection_cat2": "indumentaria",
+        "limite": "8"
       }
     },
     "bloque_ofertas_pAAPAy": {
