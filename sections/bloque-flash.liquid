@@ -23,32 +23,27 @@
 			</div>
 		</div>
 	</div>
-    <div class="cont-cont-flash">                    
+    <div class="cont-cont-flash">
         {% for collection in collections %}
             {%- assign collection_selected = collections[section.settings.collection_selected] %}
             {%- assign collection_cat1 = collections[section.settings.collection_cat1] %}
             {%- assign collection_cat2 = collections[section.settings.collection_cat2] %}
         {% endfor %}
-        
-        {% comment %} categoria 1 {% endcomment %}
+
+        {%- assign productos_cat1 = collection_cat1.products | sort: 'created_at' | reverse -%}
+        {%- assign productos_cat2 = collection_cat2.products | sort: 'created_at' | reverse -%}
+
+        {% comment %} categoria 1: ultimos cargados de collection_cat1 {% endcomment %}
         <div class="flash-home-cont grupo-cat-1 visible scrollnegro-h">
-            {% for product in collection_selected.products %}
-                {% for c in product.collections %}
-                    {% if c.handle == section.settings.collection_cat1 %}
-                        {%- render 'card-product', card_product: product -%}
-                    {% endif %}
-                {% endfor %}
+            {% for product in productos_cat1 limit: section.settings.limite %}
+                {%- render 'card-product', card_product: product -%}
             {% endfor %}
         </div>
-        
-        {% comment %} categoria 2 {% endcomment %}
+
+        {% comment %} categoria 2: ultimos cargados de collection_cat2 {% endcomment %}
         <div class="flash-home-cont grupo-cat-2 scrollnegro-h">
-            {% for product in collection_selected.products %}
-                {% for c in product.collections %}
-                    {% if c.handle == section.settings.collection_cat2 %}
-                        {%- render 'card-product', card_product: product -%}
-                    {% endif %}
-                {% endfor %}
+            {% for product in productos_cat2 limit: section.settings.limite %}
+                {%- render 'card-product', card_product: product -%}
             {% endfor %}
         </div>
     </div>
@@ -96,6 +91,12 @@
             "type": "collection",
             "id": "collection_cat2",
             "label": "Colección segunda categoría*"
+        },
+        {
+            "type": "text",
+            "id": "limite",
+            "label": "Límite de productos a mostrar por categoría*",
+            "default": "8"
         }
     ],
 	"presets": [
