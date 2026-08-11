@@ -82,9 +82,9 @@
       "settings": {
         "titulo": "Destacados",
         "collection_selected": "destacadas",
-        "texto_cat1": "Ver Compresión",
-        "collection_cat1": "calzado",
-        "texto_cat2": "Ver Indumentaria",
+        "texto_cat1": "Botines",
+        "collection_cat1": "botines",
+        "texto_cat2": "Indumentaria",
         "collection_cat2": "indumentaria"
       }
     },
