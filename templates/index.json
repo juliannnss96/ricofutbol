@@ -40,7 +40,7 @@
             "coleccion": "mercurial",
             "titulo": "Mercurial",
             "imagen": "shopify://shop_images/MERCURIAL.jpg",
-            "texto_boton": "Ver botas",
+            "texto_boton": "Ver pack",
             "link": ""
           }
         },
@@ -50,7 +50,7 @@
             "coleccion": "phantom",
             "titulo": "Phantom",
             "imagen": "shopify://shop_images/PHANTOM.jpg",
-            "texto_boton": "Ver botas",
+            "texto_boton": "Ver pack",
             "link": ""
           }
         },
@@ -60,7 +60,7 @@
             "coleccion": "tiempo",
             "titulo": "Tiempo",
             "imagen": "shopify://shop_images/TIEMPO.jpg",
-            "texto_boton": "Ver botas",
+            "texto_boton": "Ver pack",
             "link": ""
           }
         },
@@ -70,7 +70,7 @@
             "coleccion": "f50",
             "titulo": "F50",
             "imagen": "shopify://shop_images/F50.jpg",
-            "texto_boton": "Ver botas",
+            "texto_boton": "Ver pack",
             "link": ""
           }
         },
@@ -80,7 +80,7 @@
             "coleccion": "predator",
             "titulo": "Predator",
             "imagen": "shopify://shop_images/PREDATOR.jpg",
-            "texto_boton": "Ver botas",
+            "texto_boton": "Ver pack",
             "link": ""
           }
         },
@@ -90,7 +90,7 @@
             "coleccion": "copa",
             "titulo": "Copa",
             "imagen": "shopify://shop_images/COPA.jpg",
-            "texto_boton": "Ver botas",
+            "texto_boton": "Ver pack",
             "link": ""
           }
         }
@@ -105,7 +105,7 @@
       ],
       "name": "Colecciones destacadas",
       "settings": {
-        "heading": "Colecciones destacadas"
+        "heading": "Packs destacados"
       }
     },
     "tipos_jugador_4ak4XL": {

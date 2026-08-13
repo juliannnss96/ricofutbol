@@ -11,6 +11,7 @@
   letter-spacing: -0.02rem;
   margin: 0 0 24px;
   color: #1c1c1c;
+  text-align: center;
 }
 
 #colecciones-destacadas-home .categorias-home-cont {
@@ -94,7 +95,7 @@
   color: #fff;
   position: absolute;
   left: 20px;
-  bottom: 60px;
+  bottom: 88px;
   margin: 0;
   font-family: "PP Neue Montreal", sans-serif;
   font-size: 22px;
