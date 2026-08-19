@@ -103,7 +103,7 @@
         "coleccion_predator",
         "coleccion_copa"
       ],
-      "name": "Colecciones destacadas",
+      "name": "Silos destacados",
       "settings": {
         "heading": "SIlos destacados"
       }
@@ -157,10 +157,6 @@
         "collection_card_3": "calzado"
       }
     },
-    "signatures_home_JfjYKd": {
-      "type": "signatures-home",
-      "settings": {}
-    },
     "destacados_home_rG4cNh": {
       "type": "destacados-home",
       "name": "Bloque destacados",
@@ -212,7 +208,6 @@
     "bloque_flash_9gMcMW",
     "bloque_ofertas_pAAPAy",
     "bloque_ofertas_73THT7",
-    "signatures_home_JfjYKd",
     "destacados_home_rG4cNh",
     "featured_collection_LQAmHE"
   ]
